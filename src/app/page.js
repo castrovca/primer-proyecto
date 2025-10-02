@@ -1,11 +1,13 @@
 import Image from "next/image";
 import styles from "./page.module.css";
 
-function FichaDeProducto(props) {
+function Frase(props) {
+
+  
   return (
-    <div style= {{border: '1px solid #ccc', padding: '16px', margin: '16px', borderRadius: '8px'}}>
+    <div style= {{border: '3px solid #ccc', padding: '32px', margin: '80px', borderRadius: '8px'}}>
       <h2>{props.titulo}</h2>
-      <p>Precio: ₡ {props.precio}</p>
+      <p>Somos una wea de prueba. Nadie sabe muy bien por qué existimos, pero aquí estamos. Quizá por error, quizá por destino. Lo único seguro es que hacemos lo que hacemos, porque sí.</p>
     </div>
   );
 }
@@ -13,10 +15,7 @@ function FichaDeProducto(props) {
 export default function Home() {
   return (
     <main>
-      <h1><center>SnackPass</center></h1>
-
-      <FichaDeProducto titulo="Pocky sabor Fresa" precio="1200" />
-      <FichaDeProducto titulo="Pocky sabor Matcha" precio="1200" />
+      <Frase titulo="Sobre nosotros"/>
     </main>
   );
 }
