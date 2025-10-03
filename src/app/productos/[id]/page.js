@@ -1,5 +1,12 @@
 import { productos } from "@/app/data/productos";
 
+export async function generateStaticParams() {
+    return productos.map(producto => ({
+        id: producto.id.toString(),
+    }));
+}
+
+
 export default function PaginaDetalleProducto({params}) {
     const producto = productos.find(p => p.id === Number(params.id));
 
