@@ -35,11 +35,11 @@ export default async function Home() {
     }
   return (
     <main>
-      <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))'}}>
+      <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '16px', padding: '16px'}}>
       {urls.length > 0 ? (
                 urls.map((url,index) => (
                     <div key={index} style={{textAlign: 'center'}}>
-                        <img src={url} alt="waifu" style={{width: '100%', height: 'auto'}}/>
+                        <img src={url} alt="waifu" style={{width: '100%', height: 'auto', display: 'block'}} loading="eager"/>
                     </div>
                 ))
       ) : (<p>No se encontraron imagenes</p>)}
