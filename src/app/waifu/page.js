@@ -1,6 +1,3 @@
-import styles from "./page.module.css";
-import Link from "next/link";
-
 async function obtenerImagenes() {
     const res = await fetch(' https://api.waifu.pics/many/sfw/waifu', {
         method: 'POST',
@@ -10,7 +7,7 @@ async function obtenerImagenes() {
         body: JSON.stringify({
             exclude: []
         }),
-        next: {revalidate: 50},
+        next: {revalidate: 3600},
     });
 
     if (!res.ok) 
@@ -19,12 +16,13 @@ async function obtenerImagenes() {
     }
 
     const data = await res.json();
+    console.log('Respuesta de la API: ', data);
     return data;
 }
 
 
-export default async function Home() {
-  let urls = [];
+export default async function PaginaWaifu() {
+    let urls = [];
     try {
         const data = await obtenerImagenes();
         urls = data.files || [];
@@ -33,19 +31,25 @@ export default async function Home() {
 
         return <div>Error al cargar</div>;
     }
-  return (
-    <main>
-      <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))'}}>
-      {urls.length > 0 ? (
+
+    return (
+        <div>
+            <div style={{display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))'}}>
+            
+
+            {urls.length > 0 ? (
                 urls.map((url,index) => (
                     <div key={index} style={{textAlign: 'center'}}>
                         <img src={url} alt="waifu" style={{width: '100%', height: 'auto'}}/>
                     </div>
                 ))
-      ) : (<p>No se encontraron imagenes</p>)}
-      </div>
-    </main>
-  );
+            ) : (<p>No se encontraron imagenes</p>)}
+
+
+
+            </div>
+            
+        </div>
+    )
+
 }
-
-
